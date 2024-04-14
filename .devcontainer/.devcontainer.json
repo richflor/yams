@@ -1,0 +1,19 @@
+//Contenue à copier coller dans le fichier devcontainer.json 
+
+{
+	"name": "Yams'app",
+	"dockerComposeFile": "../docker-compose.yml",
+	// "initializeCommand": "echo 'fix WLS issue'",
+	"service": "api", // Le nom du service à utiliser dans le docker-compose.yml
+	"workspaceFolder": "/home/dev",
+	"customizations": {
+	  "settings": {},
+	  "extensions": [
+	],
+	"vscode": {
+		"extensions": []
+	}
+	},
+	"forwardPorts": [3000, 3001, 27017]
+  }
+  
