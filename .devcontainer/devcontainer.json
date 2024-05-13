@@ -5,7 +5,7 @@
 	"dockerComposeFile": "../docker-compose.yml",
 	// "initializeCommand": "echo 'fix WLS issue'",
 	"service": "api", // Le nom du service à utiliser dans le docker-compose.yml
-	"workspaceFolder": "/home/dev",
+	"workspaceFolder": "/usr/src/app",
 	"customizations": {
 	  "settings": {},
 	  "extensions": [

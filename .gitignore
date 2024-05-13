@@ -1,2 +1,7 @@
 /api/node_modules
 /app/node_modules
+/api/.env
+/app/.env
+/.env
+/data
+.github/

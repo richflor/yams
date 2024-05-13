@@ -1,38 +1,46 @@
 version: '3.9'
 
 services:
+  mongo:
+    image: mongo:latest
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_INITDB_ROOT_PASSWORD
   api:
-    build: ./api
+    depends_on:
+      - mongo
+    build: 
+      context: api
+      dockerfile: Dockerfile
+    restart: on-failure
     ports:
       - 3001:3001
     volumes:
       - ./api:/usr/src/app
+    env_file: .env
     environment:
-      # - NODE_ENV=development
-      - PORT=3001
       - DB_HOST=mongo
-      - DB_USER=root
-      - DB_PASSWORD=pwd
-    depends_on:
-      - mongo
+      - DB_USER=$DB_USER
+      - DB_PASSWORD=$DB_PASSWORD
+      - DB_PORT=27017
+      - DB_NAME=$DB_NAME
+    stdin_open: true
+    tty: true
 
-  app:
-    build: ./app
-    ports:
-      - 3000:3000
-    volumes:
-      - ./app:/usr/src/app
-    environment:
-      - NODE_ENV=development
-    depends_on:
-      - api
+  # app:
+  #   build: ./app
+  #   ports:
+  #     - 3000:3000
+  #   volumes:
+  #     - ./app:/usr/src/app
+  #   environment:
+  #     - NODE_ENV=development
+  #   depends_on:
+  #     - api
 
-  mongo:
-    image: mongo:latest
-    ports:
-      - 27017:27017
-    volumes:
-      - ./api/data:/data/db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: pwd
