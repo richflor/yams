@@ -3,11 +3,13 @@ import { IUser } from "../types/user";
 import User from "../models/user";
 import { play } from "../lib/game";
 
-const playGame = async (req: Request, res: Response, next: NextFunction) => {
+export const playGame = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const body = req.body as Pick<IUser, "email">;
+        const body = req.body;
 
-        const user = await User.findOne({ "email": body.email });
+        const user = await User.findOne({ "email": body.user.email });
+        console.log(body.user.email)
+        console.log(user)
 
         if (user) {
             const attempts = user.numberAttempts;
@@ -19,10 +21,11 @@ const playGame = async (req: Request, res: Response, next: NextFunction) => {
             }
 
             const numberPastriesWon = play();
+            console.log(numberPastriesWon);
 
-            user.numberAttempts--;
+            user.numberAttempts++;
 
-            user.pastries.length += numberPastriesWon;
+            user.numberPastriesToRetrieve += numberPastriesWon
 
             await user.save();
 

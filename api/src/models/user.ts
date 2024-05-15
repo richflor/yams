@@ -22,6 +22,10 @@ const userSchema: Schema = new Schema(
             type: Number,
             default: 0
         },
+        numberPastriesToRetrieve: {
+            type: Number,
+            default: 0
+        },
         pastries: {
             type: [pastriesSchema],
             default: []

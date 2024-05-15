@@ -7,5 +7,6 @@ export interface IUser extends Document {
     email: string;
     password: string;
     numberAttempts: number;
+    numberPastriesToRetrieve: number;
     pastries: IPastries[];
 }

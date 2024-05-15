@@ -1,5 +1,3 @@
-const config = require("../config/auth.config.js");
-const db = require("../models");
 import { Request, Response, NextFunction } from "express";
 import * as jwt from "jsonwebtoken";
 import dotenv from "dotenv";
@@ -8,7 +6,8 @@ dotenv.config();
 const secret = process.env.JWT_ACCESS_SECRET || ""
 
 interface AccessToken {
-    id:string;
+    name:string;
+    email:string;
 }
 
 export const verifyToken = ( req: Request, res: Response, next: NextFunction) => {
@@ -23,20 +22,37 @@ export const verifyToken = ( req: Request, res: Response, next: NextFunction) =>
     
         jwt.verify(token, secret, (err, decoded) => {
             if (err) {
-                res.status(401).send({
-                    message: "Unauthorized!",
+                console.log(err.message);
+                let message = "";
+                if(err instanceof jwt.JsonWebTokenError) {
+                    switch (err.name) {
+                        case "TokenExpiredError":
+                            message = "Token has expired"
+                            break;
+                        case "JsonWebTokenError":
+                            message = "Access token could not be decoded"
+                            break;
+                        case "NotBeforeError":
+                            message = "'jwt not active"
+                        default:
+                            message = "Access token could not be decoded"
+                            break;
+                    }
+                }
+                return res.status(401).send({
+                    message: message,
                 });
             }
             if (!decoded) {
-                res.status(401).send({
+                return res.status(401).send({
                     message: "Access token could not be decoded",
                 });
             }
 
             const accessToken = decoded as AccessToken;
           
-            if (!accessToken.id) {
-                res.status(401).send({
+            if (!accessToken.email) {
+                return res.status(401).send({
                     message: "userId was not found in the payload",
                 });
             }
