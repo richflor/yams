@@ -14,6 +14,10 @@ const userSchema: Schema = new Schema(
             required: true,
             unique: true,
         },
+        password: {
+            type: String,
+            required: true,
+        },
         numberAttempts: {
             type: Number,
             default: 0

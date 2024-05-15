@@ -4,6 +4,7 @@ import menuRoutes from "./routes";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { url } from "./config/db.config";
+import errorHandler from "./middleware/error-handler";
 
 dotenv.config();
 
@@ -31,6 +32,8 @@ app.get("/", (req, res) => {
 });
 
 app.use(menuRoutes)
+
+app.use(errorHandler)
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3001;
