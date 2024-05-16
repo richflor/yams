@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "cf16935a-025b-4b8c-a67c-2eaf0f2d074e",
+		"name": "Hetic_YAM's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28483794"
+	},
+	"item": [
+		{
+			"name": "add user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"random\",\r\n    \"email\": \"random@mail.com\",\r\n    \"password\": \"motdepasse\",\r\n    \"newthin\":\"ekek\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{host}}{{port}}/signup"
+			},
+			"response": []
+		},
+		{
+			"name": "get all users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{host}}{{port}}/users"
+			},
+			"response": []
+		},
+		{
+			"name": "get all pastries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{host}}{{port}}/pastries"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"random\",\r\n    \"email\": \"random@mail.com\",\r\n    \"password\": \"motdepasse\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{host}}{{port}}/login"
+			},
+			"response": []
+		},
+		{
+			"name": "play",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbmRvbUBtYWlsLmNvbSIsIm5hbWUiOiJyYW5kb20iLCJpYXQiOjE3MTU3ODE2ODUsImV4cCI6MTcxNTc4MTc0NX0.t0tbZujIsd4yvofVGyly6Ug2ePY_0FhYeFLNeGEZRHg"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": {\r\n        \"_id\": \"664355a5207a9e96fbe373a1\",\r\n        \"name\": \"random\",\r\n        \"email\": \"random@mail.com\",\r\n        \"password\": \"$2b$10$PBH8bb87KJU3Xm0tv4neP.iwPmQ59ZPiX5cNFXoKGLOHrFCAHZsqq\",\r\n        \"numberAttempts\": -1,\r\n        \"pastries\": [],\r\n        \"__v\": 0,\r\n        \"numberPastriesToRetrieve\": 0\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{host}}{{port}}/play"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "port",
+			"value": "3001"
+		},
+		{
+			"key": "host",
+			"value": "http://localhost:"
+		}
+	]
+}

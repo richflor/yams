@@ -20,13 +20,13 @@ const signIn = async (req: Request, res: Response, next: NextFunction) => {
         const salt = await bcrypt.genSalt()
         const hashPassword = await bcrypt.hash(body.password, salt)
 
-        const user: IUser = new User({
+        const user = new User({
             name: body.name,
             email: body.email,
             password: hashPassword
         })
 
-        const newUser: IUser = await user.save();
+        const newUser = await user.save();
 
         return res.status(201).json(body);
     } catch (error) {
