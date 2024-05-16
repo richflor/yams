@@ -31,7 +31,7 @@ export const playGame = async (req: Request, res: Response, next: NextFunction) 
 
             return res.status(200).json({
                 "attempts left": 3 - user.numberAttempts,
-                "pastries won": user.pastries.length
+                "pastries won": user.numberPastriesToRetrieve
             })
 
         } else {

@@ -1,0 +1,1 @@
+export const URL_API:string = import.meta.env.VITE_APP_TITLE;

@@ -1,7 +1,7 @@
 import { IPastries } from "../types/pastries";
 import { model, Schema } from "mongoose";
 
-export const pastriesSchema: Schema = new Schema(
+const pastriesSchema: Schema = new Schema(
     {
         name: {
             type: String,

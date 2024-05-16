@@ -28,8 +28,9 @@ const signIn = async (req: Request, res: Response, next: NextFunction) => {
 
         const newUser: IUser = await user.save();
 
-        return res.status(201).json(newUser)
+        return res.status(201).json(body);
     } catch (error) {
+        console.log(error);
         next(error);
     }
 }
@@ -39,6 +40,13 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
         const body = req.body as Pick<IUser, "email" | "name" | "password">;
 
         const user = await User.findOne({ "email": body.email });
+        const data = {
+            name:user?.name,
+            email:user?.email,
+            numberAttempts:user?.numberAttempts,
+            numberPastriesToRetrieve:user?.numberPastriesToRetrieve
+        }
+        console.log(data)
         if (!user) {
             return res.status(404).send({
                 message: "User doesn't exist",
@@ -48,7 +56,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
 
             if (passwordIsValid) {
                 const token = generateToken(body as Pick<IUser, "email" | "name">);
-                return res.status(200).json({"user":user, "token":token})
+                return res.status(200).json({"user":data, "token":token})
             } else {
                 return res.status(401).send({
                     message: "Wrong password",

@@ -8,6 +8,7 @@ services:
     ports:
       - 27017:27017
     volumes:
+      - ./initData:/usr/src/
       - ./data:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=$MONGO_INITDB_ROOT_USERNAME
@@ -39,7 +40,7 @@ services:
       context: app
       dockerfile: Dockerfile
     ports:
-      - 3000:3000
+      - 8080:8080
     volumes:
       - ./app:/usr/src/app
       - /usr/src/app/node_modules

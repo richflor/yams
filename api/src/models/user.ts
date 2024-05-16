@@ -1,6 +1,5 @@
 import { IUser } from "../types/user";
 import { model, Schema } from "mongoose";
-import { pastriesSchema } from "./pastries";
 
 const userSchema: Schema = new Schema(
     {
@@ -27,7 +26,7 @@ const userSchema: Schema = new Schema(
             default: 0
         },
         pastries: {
-            type: [pastriesSchema],
+            type: [String],
             default: []
         }
     }

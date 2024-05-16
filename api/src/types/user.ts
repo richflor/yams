@@ -1,5 +1,5 @@
 import { Document } from "mongoose";
-import { IPastries } from "./pastries";
+// import { IPastries } from "./pastries";
 
 export interface IUser extends Document {
     _id: string;
@@ -8,5 +8,5 @@ export interface IUser extends Document {
     password: string;
     numberAttempts: number;
     numberPastriesToRetrieve: number;
-    pastries: IPastries[];
+    // pastries: IPastries[];
 }

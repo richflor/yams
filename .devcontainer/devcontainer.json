@@ -4,7 +4,7 @@
 	"name": "Yams'app",
 	"dockerComposeFile": "../docker-compose.yml",
 	// "initializeCommand": "echo 'fix WLS issue'",
-	"service": "api", // Le nom du service à utiliser dans le docker-compose.yml
+	"service": "app", // Le nom du service à utiliser dans le docker-compose.yml
 	"workspaceFolder": "/usr/src/app",
 	"customizations": {
 	  "settings": {},
@@ -14,6 +14,6 @@
 		"extensions": []
 	}
 	},
-	"forwardPorts": [3000, 3001, 27017]
+	"forwardPorts": [8080, 3001, 27017]
   }
   

@@ -1,0 +1,49 @@
+applications pour jouer et gagner des patisseries - le YAM's
+
+Inscription
+
+Interface jeu 
+
+algo jeu 
+
+compter nombre de tentatives du joueur, bloqué quand il a tout utilisé
+
+Event dure tant qu'ils restent des patisseries à gagner
+
+il reste 0 patisseries, le jeu se termine, affichage gagnants
+
+Pastries
+name
+image
+stock
+quantityWon
+
+Users
+name
+email
+numberAttempts
+pastries {}
+
+PastriesCount
+
+React
+
+
+How user get pastries
+
+has numebr of pastries won but not yet retrieved
+
+need to select from a get all pastries on front
+/pastries
+
+need to chose and send it
+/chose
+
+front
+
+login
+signin
+player
+winnersScreen
+
+probably need a middleware to check for remaining pastries
